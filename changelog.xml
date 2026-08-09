@@ -1,1 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelogs>
 
+    <changelog>
+        <element>com_devartdocuments</element>
+        <type>component</type>
+        <version>1.0.1</version>
+
+        <fix>
+            <item>Fixed clean-site package installation failures caused by incomplete database schema created before install SQL</item>
+            <item>Fixed installer postflight fatal errors when StorageProtectionHelper and CategoryMenuService were not available during first boot</item>
+            <item>Fixed missing database index detection for idx_folder_batch_id on fresh installations</item>
+            <item>Fixed installer document index creation to use Joomla getTableKeys() API</item>
+            <item>Improved installer stability across clean-site install and update paths</item>
+        </fix>
+
+        <change>
+            <item>Installer preflight on fresh install now defers documents table creation to manifest install SQL</item>
+            <item>Installer ensureSchema CREATE TABLE aligned with install.mysql.utf8.sql for update migrations</item>
+            <item>Production hardening retained: centralized MIME validation, HTTP Range for local files and listing indexes</item>
+        </change>
+
+        <note>
+            <item>Recommended first public release for new DevArt Documents installations</item>
+            <item>Install or update using the full pkg_devartdocuments package only</item>
+            <item>Safe update from alpha development builds and from version 1.0.0 package installs</item>
+            <item>No breaking changes to existing document records, categories or storage paths</item>
+            <item>Validated on clean Joomla 6 site install and on existing site update</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>com_devartdocuments</element>
+        <type>component</type>
+        <version>1.0.0</version>
+
+        <addition>
+            <item>Added full Joomla 6 native DevArt Documents component with modern MVC and service provider architecture</item>
+            <item>Added frontend DevArt Documents module and content plugin integration</item>
+            <item>Added editor button plugin for article document insertion</item>
+            <item>Added system plugin for administrator branding and integration hooks</item>
+            <item>Added filesystem plugin for Media Manager document storage adapter</item>
+            <item>Added task plugin for scheduled search indexing and folder scan profile imports</item>
+            <item>Added document library with categories, tags, publish windows and ordering</item>
+            <item>Added Joomla native category integration through com_categories</item>
+            <item>Added Joomla native tag integration through com_tags for com_devartdocuments.document</item>
+            <item>Added ACL with access levels, user groups, inheritance and per-document open/download permissions</item>
+            <item>Added local document storage with protected storage root and centralized StorageProtectionHelper</item>
+            <item>Added Google Drive storage integration with per-category folder configuration</item>
+            <item>Added streaming and chunked Google Drive upload, serve and search indexing paths</item>
+            <item>Added full-text document search on the category menu item page</item>
+            <item>Added optional external MariaDB search index backend</item>
+            <item>Added search CAPTCHA, rate limits and scheduled indexing support</item>
+            <item>Added folder scan profiles for batch imports from disk</item>
+            <item>Added metadata backup export and import through Tools</item>
+            <item>Added shared DevArt document card renderer for component, module and content plugin</item>
+            <item>Added display themes including red, orange, blue, green, yellow, gray and dark</item>
+            <item>Added category menu scope stored in menu params with clean canonical URLs</item>
+            <item>Added Tools area for Settings, Search index, Folder scan profiles and Metadata backup</item>
+            <item>Added dashboard statistics and storage security status</item>
+            <item>Added GitHub-based Joomla update server support</item>
+        </addition>
+
+        <change>
+            <item>Document architecture designed specifically for Joomla 6 and PHP 8.3+</item>
+            <item>Frontend listing uses DocumentListingQuery, SQL ACL filters and shared document card rendering</item>
+            <item>Routing and display behavior configured in Tools instead of generic Joomla component options</item>
+            <item>Local file serving supports HTTP 206 Partial Content through HttpByteRange</item>
+            <item>Upload, serve and Media Manager MIME handling centralized in DocumentMimeMap</item>
+            <item>Google Drive OAuth tokens protected through encrypted token vault storage</item>
+            <item>Category, module and content plugin listings share DocumentContentScope and DisplaySettingsResolver</item>
+            <item>Search index backend configurable for local component tables or separate MariaDB database</item>
+            <item>Folder scan profiles replace legacy global folder-scan settings for safer production workflows</item>
+        </change>
+
+        <security>
+            <item>Added controller to service to storage access flow without exposing filesystem paths</item>
+            <item>Added MIME validation for upload, serve and filesystem adapter operations</item>
+            <item>Added protected local storage root with deny rules and directory hardening</item>
+            <item>Added ACL enforcement for administrator operations and frontend document access</item>
+            <item>Added CSRF protection for administrator actions</item>
+            <item>Added encrypted OAuth token storage for Google Drive integrations</item>
+            <item>Added search CAPTCHA and rate limiting controls for public search endpoints</item>
+        </security>
+
+        <note>
+            <item>Initial public DevArt Documents release for Joomla 6</item>
+            <item>Requires Joomla 6.0+ and PHP 8.3+</item>
+            <item>Install using the full pkg_devartdocuments package, not the component ZIP alone</item>
+            <item>Google Drive open and download does not support HTTP Range; local files only</item>
+            <item>Nginx and LiteSpeed require explicit server deny rules for the storage path</item>
+            <item>Image-only PDFs may be skipped by the search indexer until OCR support exists</item>
+            <item>Always test on a staging environment before production deployment</item>
+        </note>
+    </changelog>
+
+</changelogs>
