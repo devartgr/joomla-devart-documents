@@ -1,1 +1,22 @@
-
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+    <update>
+        <name>DevArt Documents Package</name>
+        <description>Joomla 6 document management with folder scan profiles, full-text search, Google Drive and metadata backup.</description>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
+        <version>1.0.1</version>
+        <infourl title="DevArt Documents">https://github.com/devartgr/joomla-devart-documents</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/devartgr/joomla-devart-documents/releases/download/v1.0.1/pkg_devartdocuments_v1.0.1.zip</downloadurl>
+        </downloads>
+        <targetplatform name="joomla" version="6.*" />
+        <php_minimum>8.3.0</php_minimum>
+        <sha256>0f2580986f5cda50f09dc2b977429c42c706561ce54132f62aa957acfaa523a4</sha256>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <maintainer>Kostas Stathopoulos</maintainer>
+        <maintainerurl>https://devart.gr</maintainerurl>
+    </update>
+</updates>
