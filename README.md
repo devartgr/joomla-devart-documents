@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.0.1-orange)
+![Release](https://img.shields.io/badge/Version-1.1.0-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -30,9 +30,28 @@ The package includes a component, frontend module, content plugin, editor button
 
 ---
 
+## Version 1.1.0
+
+DevArt Documents 1.1.0 is the public update after 1.0.1. It consolidates all certified development work since that release into one installable package for Joomla 6.
+
+### Version 1.1.0 Highlights
+
+- Software and PDF display templates (GitHub links, hash, embedded PDF preview)
+- Theme and display overrides on document, category, and menu with clear resolution chains
+- Per-extension Open overrides in Tools → Settings
+- External URL storage driver with ACL-gated redirect
+- ACL-gated PDF embed shortcode and **DevArt Embed PDF** editor button
+- Document Ordering for Manual ordering on menus and modules
+- Google Drive security hardening and content shortcode language loading
+- Release housekeeping: `LICENSE.txt`, GPLv3+ PHP headers, manifest descriptions
+
+See `CHANGELOG.md` for the full public changelog.
+
+---
+
 ## Version 1.0.1
 
-DevArt Documents 1.0.1 is the first public release for Joomla 6, with a critical clean-site installation fix.
+DevArt Documents 1.0.1 was the first public release for Joomla 6, with a critical clean-site installation fix.
 
 ### Version 1.0.1 Highlights
 
@@ -52,9 +71,9 @@ The installable package includes:
 
 - `com_devartdocuments` — Document library component (administrator and site)
 - `mod_devartdocuments` — Frontend document listing module
-- `plg_content_devartdocuments` — Article document card rendering
-- `plg_editors-xtd_devartdocuments` — Editor button for document insertion
-- `plg_system_devartdocuments` — System integration and administrator branding
+- `plg_content_devartdocuments` — Article document card and PDF embed shortcodes
+- `plg_editors-xtd_devartdocuments` — Editor buttons for document card and PDF embed insertion
+- `plg_system_devartdocuments` — System integration, category fields, and administrator branding
 - `plg_filesystem_devartdocuments` — Media Manager filesystem adapter
 - `plg_task_devartdocuments` — Scheduled search indexing and folder scan imports
 
@@ -140,6 +159,8 @@ Presentation features include:
 
 - DevArt document card UI
 - Display themes: red, orange, blue, green, yellow, gray, and dark
+- Software and PDF display templates
+- ACL-gated PDF embed in document detail and article shortcodes
 - `DocumentContentScope` for all documents, selected categories, or tags
 - `DisplaySettingsResolver` for consistent listing behavior
 - Category menu scope stored in menu parameters
@@ -296,7 +317,7 @@ Optional:
 
 1. Download the latest package:
 
-   `pkg_devartdocuments_v1.0.1.zip`
+   `pkg_devartdocuments_v1.1.0.zip`
 
 2. Open the Joomla administrator.
 
@@ -338,7 +359,7 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.0.1 is a safe update from alpha development builds and from version 1.0.0 package installs.
+Version 1.1.0 is a safe update from 1.0.1 and from certified development builds after 1.0.1.
 
 ---
 
@@ -346,7 +367,7 @@ Version 1.0.1 is a safe update from alpha development builds and from version 1.
 
 Latest release:
 
-`pkg_devartdocuments_v1.0.1.zip`
+`pkg_devartdocuments_v1.1.0.zip`
 
 GitHub releases:
 
@@ -354,11 +375,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.0.1/pkg_devartdocuments_v1.0.1.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.0/pkg_devartdocuments_v1.1.0.zip
 
 SHA-256:
 
-`0f2580986f5cda50f09dc2b977429c42c706561ce54132f62aa957acfaa523a4`
+`1f90f483201bba106f82b1c09e436f6fc179b3f75f101bf541e35c99e29ac443`
 
 ---
 
@@ -390,7 +411,7 @@ Do not include passwords, private keys, access tokens, or other sensitive inform
 
 DevArt Documents is released under the GNU General Public License version 3 or later.
 
-See the included license file for complete licensing information.
+See `LICENSE.txt` for complete licensing information.
 
 ---
 
