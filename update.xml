@@ -11,7 +11,7 @@
         <downloads>
             <downloadurl type="full" format="zip">https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.0/pkg_devartdocuments_v1.1.0.zip</downloadurl>
         </downloads>
-        <sha256>1f90f483201bba106f82b1c09e436f6fc179b3f75f101bf541e35c99e29ac443</sha256>
+        <sha256>98b1de47e70f4547e4d58c226a33f1c3216179d7c6e0609804a886bab0f40170</sha256>
         <tags>
             <tag>stable</tag>
         </tags>

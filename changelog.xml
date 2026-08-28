@@ -29,6 +29,7 @@
             <item>Content plugin loads com_devartdocuments language so article shortcodes show translated button labels.</item>
             <item>Google Drive token vault and OAuth hardening (HKDF, host checks, redirect allowlist).</item>
             <item>Archive MIME handling without treating application/octet-stream as a safe open type.</item>
+            <item>Fixed broken el-GR site language quotes and forced frontend language load so button labels are not raw COM_* keys.</item>
         </fix>
         <note>
             <item>Public update after 1.0.1. Intermediate local builds 1.0.2–1.0.38 are not published separately.</item>

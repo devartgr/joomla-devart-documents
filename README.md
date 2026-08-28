@@ -379,7 +379,7 @@ https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.0/pkg
 
 SHA-256:
 
-`1f90f483201bba106f82b1c09e436f6fc179b3f75f101bf541e35c99e29ac443`
+`98b1de47e70f4547e4d58c226a33f1c3216179d7c6e0609804a886bab0f40170`
 
 ---
 
