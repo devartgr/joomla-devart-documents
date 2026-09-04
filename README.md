@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.0-orange)
+![Release](https://img.shields.io/badge/Version-1.1.1-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -19,14 +19,31 @@ DevArt Documents supports:
 
 - Local protected document storage
 - Google Drive integration per category
-- Joomla categories and tags
+- Joomla categories and own DevArt Documents tags
 - Frontend document listings and search
 - Folder scan profiles for batch imports
 - Metadata backup and restore
-- Media Manager filesystem adapter
+- Media Manager filesystem adapter (document picker isolated from Local images)
 - Shared DevArt document card rendering
 
 The package includes a component, frontend module, content plugin, editor button, system integration plugin, filesystem plugin, and scheduled task plugin.
+
+---
+
+## Version 1.1.1
+
+DevArt Documents 1.1.1 is a production patch after 1.1.0 for Joomla 6 / PHP 8.3+. It focuses on reported fixes and small safe additions.
+
+### Version 1.1.1 Highlights
+
+- Own DevArt Documents tags (admin Tag Manager, frontend tag pages/filters)
+- Module **Single document** scope with searchable DocumentSelect picker and detail layout
+- Category override for embedded PDF preview
+- ZIP/package Media upload types restored; Media picker no longer sticks on Documents storage
+- Routing Off / no Documents menu detail links; search script and results-count fixes
+- WebAsset path corrections for DocumentSelect and category search
+
+See `CHANGELOG.md` for the full public changelog.
 
 ---
 

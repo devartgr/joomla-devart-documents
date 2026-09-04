@@ -4,6 +4,31 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.1] - 2026-09-05
+
+Production patch for Joomla 6 / PHP 8.3+. Reported fixes and small safe additions only; no breaking changes to storage paths, ACL, or routing defaults.
+
+### Added
+
+- Category option **Embedded PDF preview for this category** (documents / show all / hide all) overriding the per-document toggle
+- Own DevArt Documents tags: Tag Manager, document assignment, frontend tag pages, and tag filters for menus and the module (Joomla core tags no longer used)
+- Module content scope **Single document** with searchable DocumentSelect modal picker (Events-aligned) and document detail layout rendering
+
+### Fixed
+
+- ZIP and other package types (docx, xlsx, pptx, rar, 7z, …) upload again via Media Manager; install/update merges Documents defaults into `com_media` document/restrict/MIME lists
+- Multiple tags can be created and assigned again after removing the short-lived Joomla core tags content-type registration
+- Document detail opens when Routing is Off with no Documents menu (non-home layout Itemid so Gantry Page Content is not suppressed)
+- Web asset registry paths corrected (`css/` / `js/` no longer duplicated), restoring DocumentSelect picker assets
+- Category search submit button unlocks again when anti-spam is active (`site-search.js` path fixed)
+- Search results count shows the full filtered total instead of the current page size
+- Media Manager / article image browse no longer sticks on DevArt Documents storage; Documents filesystem provider registers only for the document file picker (or an explicit Documents adapter path)
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+
 ## [1.1.0] - 2026-08-29
 
 First major public update after `1.0.1`. Internal development builds `1.0.2`–`1.0.38` are folded into this release and are not published separately.

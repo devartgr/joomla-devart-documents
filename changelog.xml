@@ -4,6 +4,30 @@
     <changelog>
         <element>pkg_devartdocuments</element>
         <type>package</type>
+        <version>1.1.1</version>
+        <addition>
+            <item>Category option Embedded PDF preview for this category: show or hide the embedded preview for every PDF-template document in the category, overriding the per-document toggle.</item>
+            <item>DevArt Documents tags: own tag manager (DevArt Documents → Tags), tag assignment on the document form, frontend tag pages, and tag filters for menu items and the module.</item>
+            <item>Module content scope Single document: select and render one published document using the document detail layout, with a searchable DocumentSelect modal picker (Events-aligned, ID/title search, bounded results).</item>
+        </addition>
+        <fix>
+            <item>ZIP and other package types (docx, xlsx, pptx, rar, 7z, …) upload again: install/update merges Documents defaults into Joomla Media Manager document and restrict-upload lists, and archive MIME validation accepts common OS labels.</item>
+            <item>Multiple tags can be created and assigned again. Documents no longer use Joomla core tags; the short-lived content type registration from the 1.1.1 development build is removed on update.</item>
+            <item>Document detail opens when Routing is Off with no Documents menu: attach a non-home layout Itemid so Gantry/Page Content is not suppressed by the Home outline (query URL with Itemid).</item>
+            <item>Web asset registry paths corrected so registered styles and scripts resolve: media URIs no longer repeat the css/ and js/ folder, which silently discarded the DocumentSelect picker assets.</item>
+            <item>Category search submit button is no longer permanently disabled when an anti-spam method is active: the search script path was unresolvable, so proof-of-work, reCAPTCHA and Turnstile never enabled the button.</item>
+            <item>Search results count now shows the full filtered total instead of the current page size (for example 172 matches, not 20).</item>
+            <item>Media Manager / article image browse no longer sticks on DevArt Documents storage: the Documents filesystem provider registers only for the document file picker (or an explicit Documents adapter path), so normal Media falls back to Local images.</item>
+        </fix>
+        <note>
+            <item>Requires Joomla 6.0+ and PHP 8.3.0+.</item>
+            <item>Install and update only through pkg_devartdocuments.</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
         <version>1.1.0</version>
         <addition>
             <item>Software display template with optional Changelog, Releases, Documentation, Requirements, Hash, and custom Download label fields.</item>
