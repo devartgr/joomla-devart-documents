@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.1-orange)
+![Release](https://img.shields.io/badge/Version-1.1.2-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -30,9 +30,25 @@ The package includes a component, frontend module, content plugin, editor button
 
 ---
 
+## Version 1.1.2
+
+DevArt Documents 1.1.2 is a compatibility patch after 1.1.1 for Joomla 6 / PHP 8.3+. It prepares the codebase for Joomla 7 and PHP 8.5 without changing storage paths, ACL, or routing defaults.
+
+### Version 1.1.2 Highlights
+
+- Joomla 7 readiness: removed APIs scheduled for removal in 7.0 (`getConfig`, `getCache`, application `input` property, `Categories::getInstance`, `Table::getDbo`, view `get()`, Document script/style helpers)
+- Google Drive / OAuth use the framework HTTP client (PSR-7); storage protection probe reports real HTTP status
+- Frontend and administrator assets via WebAssetManager (`SiteAssets`, form validate / keepalive / multiselect)
+- PHP 8.5 readiness: removed deprecated `curl_close` / `finfo_close` / `$http_response_header`
+- Database queries use `createQuery()` / `setLimit()`; search session keys use `Session::remove()`
+
+See `CHANGELOG.md` for the full public changelog.
+
+---
+
 ## Version 1.1.1
 
-DevArt Documents 1.1.1 is a production patch after 1.1.0 for Joomla 6 / PHP 8.3+. It focuses on reported fixes and small safe additions.
+DevArt Documents 1.1.1 was a production patch after 1.1.0 for reported fixes and small safe additions.
 
 ### Version 1.1.1 Highlights
 

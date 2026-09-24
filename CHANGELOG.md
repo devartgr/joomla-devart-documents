@@ -4,6 +4,27 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.2] - 2026-09-24
+
+Compatibility patch for Joomla 6 / PHP 8.3+ that prepares the codebase for Joomla 7 and PHP 8.5. No changes to storage paths, ACL, routing or the database schema.
+
+### Fixed
+
+- Dashboard storage protection probe reports the real HTTP status again (the HTTP factory was called statically and always reported status 0)
+- Joomla 7 readiness: removed APIs scheduled for removal in 7.0 (`Factory::getConfig`, `Factory::getCache`, application `input` property, `Categories::getInstance`, `Table::getDbo`, view `get()`, Document `addScript` / `addScriptDeclaration` / `addStyleDeclaration`)
+- Joomla 7 readiness for plugins: plugins no longer receive the event dispatcher in their constructor, and the system plugin reads form and save events through typed event getters instead of numeric event arguments
+- Google Drive and OAuth requests use the Joomla framework HTTP client (PSR-7) instead of the deprecated CMS HTTP client, keeping the Joomla user agent and Global Configuration proxy settings
+- Frontend styles and scripts load through the WebAssetManager in views, the module and the content plugin; feed and raw documents no longer attempt to load HTML assets
+- Administrator forms and lists load form validation, keepalive and multiselect through the WebAssetManager
+- PHP 8.5 readiness: removed deprecated `curl_close()` / `finfo_close()` calls and `$http_response_header` in the anti-spam verification fallback
+- Database queries use `createQuery()` and `setLimit()` instead of the deprecated `getQuery(true)` and `setQuery()` offset/limit arguments
+- Search session values are removed with `Session::remove()` instead of the deprecated `Session::clear($key)`
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+
 ## [1.1.1] - 2026-09-05
 
 Production patch for Joomla 6 / PHP 8.3+. Reported fixes and small safe additions only; no breaking changes to storage paths, ACL, or routing defaults.

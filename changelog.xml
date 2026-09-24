@@ -4,6 +4,27 @@
     <changelog>
         <element>pkg_devartdocuments</element>
         <type>package</type>
+        <version>1.1.2</version>
+        <fix>
+            <item>Dashboard storage protection probe reports the real HTTP status again: the probe used a non-static HTTP factory call that always failed and reported status 0.</item>
+            <item>Joomla 7 readiness: removed Joomla APIs scheduled for removal in 7.0 (Factory::getConfig, Factory::getCache, application input property, Categories::getInstance, Table::getDbo, view get(), Document addScript/addScriptDeclaration/addStyleDeclaration).</item>
+            <item>Joomla 7 readiness for plugins: plugins no longer receive the event dispatcher in their constructor, and the system plugin reads form and save events through typed event getters instead of numeric event arguments.</item>
+            <item>Google Drive and OAuth requests use the Joomla framework HTTP client (PSR-7) instead of the deprecated CMS HTTP client, keeping the Joomla user agent and Global Configuration proxy settings.</item>
+            <item>Frontend styles and scripts load through the WebAssetManager in views, the module and the content plugin; feed and raw documents no longer attempt to load HTML assets.</item>
+            <item>Administrator forms and lists load form validation, keepalive and multiselect through the WebAssetManager instead of legacy behavior helpers.</item>
+            <item>PHP 8.5 readiness: removed deprecated curl_close() and finfo_close() calls and the $http_response_header variable in the anti-spam verification fallback.</item>
+            <item>Database queries use createQuery() and setLimit() instead of the deprecated getQuery(true) and setQuery() offset/limit arguments.</item>
+            <item>Search session values are removed with Session::remove() instead of the deprecated Session::clear($key).</item>
+        </fix>
+        <note>
+            <item>Requires Joomla 6.0+ and PHP 8.3.0+.</item>
+            <item>Install and update only through pkg_devartdocuments.</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
         <version>1.1.1</version>
         <addition>
             <item>Category option Embedded PDF preview for this category: show or hide the embedded preview for every PDF-template document in the category, overriding the per-document toggle.</item>
