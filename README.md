@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.2-orange)
+![Release](https://img.shields.io/badge/Version-1.1.3-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -27,6 +27,19 @@ DevArt Documents supports:
 - Shared DevArt document card rendering
 
 The package includes a component, frontend module, content plugin, editor button, system integration plugin, filesystem plugin, and scheduled task plugin.
+
+---
+
+## Version 1.1.3
+
+DevArt Documents 1.1.3 is a bugfix after 1.1.2 for Joomla 6 / PHP 8.3+. It removes PHP 8.x Undefined property warnings when resolving Documents menu routes.
+
+### Version 1.1.3 Highlights
+
+- Frontend menu lookup no longer filters by `MenuItem::client_id` (GitHub issue #1)
+- No changes to storage paths, ACL, routing defaults, or the database schema
+
+See `CHANGELOG.md` for the full public changelog.
 
 ---
 

@@ -4,6 +4,19 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.3] - 2026-09-28
+
+Bugfix for PHP 8.x Undefined property warnings when resolving Documents menu routes. No changes to storage paths, ACL, routing defaults, or the database schema.
+
+### Fixed
+
+- Frontend menu lookup no longer filters by `MenuItem::client_id`. Joomla `SiteMenu` already loads only site items and does not expose `client_id` on `MenuItem`, so `getItems(..., 'client_id')` triggered `Undefined property` warnings (GitHub issue #1)
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+
 ## [1.1.2] - 2026-09-24
 
 Compatibility patch for Joomla 6 / PHP 8.3+ that prepares the codebase for Joomla 7 and PHP 8.5. No changes to storage paths, ACL, routing or the database schema.
