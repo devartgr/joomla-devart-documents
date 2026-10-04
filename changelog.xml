@@ -4,6 +4,49 @@
     <changelog>
         <element>pkg_devartdocuments</element>
         <type>package</type>
+        <version>1.1.4</version>
+        <addition>
+            <item>Optional HTTP cache policy for local open/download (off / revalidate / public) with ETag, Last-Modified, and HTTP 304. Default remains private no-store; public applies only to guest-accessible documents.</item>
+        </addition>
+        <fix>
+            <item>HTTP Range parsing rejects invalid Range headers correctly (operator-precedence bug in HttpByteRange). Unsatisfiable ranges now return HTTP 416 explicitly.</item>
+            <item>Search indexer loads storage_driver and skips external URL documents as skipped instead of repeatedly marking them failed.</item>
+            <item>Schema update 1.1.4.sql / installer ensure adds folder-batch scan_cursor and aligns #__schemas with the component manifest.</item>
+            <item>Google Drive access tokens are cached until near expiry independently of site System Cache, and stored encrypted via TokenVault.</item>
+            <item>Software template GitHub release download counts are cached for three hours independently of site System Cache.</item>
+            <item>Frontend listing queries no longer select the full description column; listing cards use short_description only.</item>
+            <item>Folder scan loads the category folder map once per batch and only loads linked file paths under the configured storage root.</item>
+            <item>Phrase search no longer uses full-index GROUP_CONCAT; content-match ID caps show a notice when hit; indexer chunks overlap for boundary phrases (reindex required); active search sessions survive captcha redirects.</item>
+            <item>Search session keys moved outside ListModel filter state (fixes listing showing all documents after search); captcha forms block Enter/submit until anti-spam is ready.</item>
+            <item>Destructive administrator actions now require POST with CSRF token (indexer, backup export, Drive connect/disconnect, folder-batch actions, picker token).</item>
+            <item>Admin POST action buttons no longer nest a form inside Settings/edit forms (restores Save / Save and Close / Cancel toolbar).</item>
+            <item>Settings and folder-batch forms keep task at the top of adminForm with a safe submitbutton so toolbar actions cannot lose the task field.</item>
+            <item>Google Drive OAuth reconnect no longer fails after Connect: single-use state nonce is stored under site tmp/ shared by administrator and site callback.</item>
+            <item>Folder-batch import resumes from a persisted scan_cursor checkpoint so each batch does not re-walk already-handled files from the start.</item>
+            <item>Category search/clear fetch a fresh CSRF token from search.security before POST so Cloudflare-cached listing HTML does not reuse a stale form token.</item>
+            <item>Search security bootstrap uses POST so Cloudflare Cache Everything cannot cache the JSON token/challenge or strip the session Set-Cookie.</item>
+            <item>Frontend search script asset renamed to site-search-cfpost.js so Cloudflare cannot keep serving a stale cached site-search.js after update.</item>
+            <item>Captcha search results require URL filter_search and filter_search_mode to match the captcha-approved session; mismatch shows the clean listing.</item>
+            <item>Without captcha, a clean category URL no longer resurrects a previous search from user-state.</item>
+            <item>Settings Search tab warns about the required Cloudflare Cache Rule bypass for filter_search.</item>
+            <item>Search redirects always include filter_search in the URL so result pages do not share the clean category cache key.</item>
+            <item>Search index save runs in a database transaction; failed index rows are no longer auto-retried until rebuild/pending.</item>
+            <item>URL size probe blocks private/reserved hosts; Drive Connect requires a CSRF token and OAuth state nonces are single-use.</item>
+            <item>TokenVault uses authenticated encryption (sodium_crypto_secretbox, v2: prefix); legacy AES-CBC tokens still decrypt and are rewritten to v2 on use.</item>
+            <item>Local file streaming stops when the client disconnects; download counters ignore Range continuation requests.</item>
+            <item>Google Drive streaming stops pulling from Google when the client disconnects (connection_aborted in the cURL write callback; Google Docs/Sheets export included).</item>
+            <item>Google Drive downloads use a 30s connect timeout and abort stalled transfers below 1 KiB/s for 60s (no hard total download timeout on streams).</item>
+            <item>Category document counts reuse pagination totals; Media adapter hard-denies dangerous extensions; package installer uses createQuery().</item>
+        </fix>
+        <note>
+            <item>Requires Joomla 6.0+ and PHP 8.3.0+.</item>
+            <item>Install and update only through pkg_devartdocuments.</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
         <version>1.1.3</version>
         <fix>
             <item>Frontend menu lookup no longer filters by MenuItem::client_id. SiteMenu does not expose that property, so getItems(..., 'client_id') produced Undefined property warnings under PHP 8.x (GitHub issue #1).</item>

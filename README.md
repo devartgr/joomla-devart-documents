@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.3-orange)
+![Release](https://img.shields.io/badge/Version-1.1.4-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -30,14 +30,22 @@ The package includes a component, frontend module, content plugin, editor button
 
 ---
 
-## Version 1.1.3
+## Version 1.1.4
 
-DevArt Documents 1.1.3 is a bugfix after 1.1.2 for Joomla 6 / PHP 8.3+. It removes PHP 8.x Undefined property warnings when resolving Documents menu routes.
+DevArt Documents 1.1.4 is a correctness, security, and performance patch after 1.1.3 for Joomla 6 / PHP 8.3+. It hardens administrator CSRF, Google Drive OAuth reconnect, folder-batch import checkpoints, Cloudflare-safe frontend search, and streaming/download behaviour. No changes to storage paths, ACL, or routing defaults. Folder-batch import adds an optional `scan_cursor` checkpoint column (empty by default).
 
-### Version 1.1.3 Highlights
+### Version 1.1.4 Highlights
 
-- Frontend menu lookup no longer filters by `MenuItem::client_id` (GitHub issue #1)
-- No changes to storage paths, ACL, routing defaults, or the database schema
+- Invalid `Range` headers rejected correctly; unsatisfiable ranges return HTTP 416
+- Search indexer skips external URL documents instead of marking them failed
+- Google Drive access tokens cached until near expiry (independent of System Cache; TokenVault `v2:` authenticated encryption)
+- GitHub release download counts cached for three hours on Software cards
+- Destructive admin actions require POST + CSRF; Settings toolbar nesting fixed; Drive OAuth reconnect via shared `tmp/` nonce
+- Folder-batch import resumes from a persisted `scan_cursor` checkpoint
+- Cloudflare-safe category search: POST `search.security` bootstrap, `site-search-cfpost.js`, URL/session agreement for captcha results, Settings warning for Cache Rule bypass on `filter_search`
+- Optional local download HTTP cache policy (off / revalidate / public; default remains private no-store)
+- Lighter listing queries, safer search/indexing, SSRF/OAuth harden, stream abort/timeouts
+- No changes to storage paths, ACL, or routing defaults
 
 See `CHANGELOG.md` for the full public changelog.
 
@@ -304,6 +312,17 @@ Performance characteristics include:
 - Cloudflare-friendly rendering
 - Joomla module caching support on the Advanced tab
 
+### Cloudflare Cache Everything (required ops)
+
+If the site uses Cloudflare **Cache Everything** (or similar edge HTML caching) with an Edge TTL that ignores origin `Cache-Control`, add Cache Rules so dynamic Documents URLs are never stored at the edge:
+
+1. Broad frontend cache rule(s) first.
+2. **Bypass last** (last matching Cache Rule wins — not legacy Page Rules):
+   - `*/administrator*` (and custom admin login URLs)
+   - query string contains `filter_search=` (category search result pages)
+
+Category search uses a POST security bootstrap and session/URL agreement so captcha results stay visitor-safe; the `filter_search` bypass is still required when Edge TTL ignores `no-store`. Details: `qa/checklist.md` (Cloudflare Cache Rules order).
+
 ---
 
 ## Joomla-Native Architecture
@@ -405,7 +424,9 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.1.0 is a safe update from 1.0.1 and from certified development builds after 1.0.1.
+Version 1.1.4 is a safe update from 1.1.3 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP.
+
+If the site uses Cloudflare Cache Everything, add a Cache Rule that bypasses cache when the URI query string contains `filter_search`, and place it after any broad cache rule (see README section Cloudflare Cache Everything).
 
 ---
 
@@ -413,7 +434,7 @@ Version 1.1.0 is a safe update from 1.0.1 and from certified development builds 
 
 Latest release:
 
-`pkg_devartdocuments_v1.1.0.zip`
+`pkg_devartdocuments_v1.1.4.zip`
 
 GitHub releases:
 
@@ -421,11 +442,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.0/pkg_devartdocuments_v1.1.0.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.4/pkg_devartdocuments_v1.1.4.zip
 
 SHA-256:
 
-`98b1de47e70f4547e4d58c226a33f1c3216179d7c6e0609804a886bab0f40170`
+`cc80bde2e0cc7afa3522088b20a78e0336373c4c3cb596e200256eba668d5ce0`
 
 ---
 
