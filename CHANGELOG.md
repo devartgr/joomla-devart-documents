@@ -4,6 +4,20 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.5] - 2026-10-08
+
+Installer hotfix after 1.1.4. No changes to storage paths, ACL, routing defaults, or document data.
+
+### Fixed
+
+- Update/install from 1.1.3 (and failed 1.1.4 attempts) no longer stops with `JInstaller: :Install: Error SQL` / Duplicate column `scan_cursor`. Cause: `script.php` preflight already added the column, then `1.1.4.sql` ran a non-idempotent `ALTER TABLE … ADD`. `1.1.4.sql` is now a schema marker only; the column remains ensured idempotently in `script.php` (additive, downgrade-friendly)
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+- Sites that failed on 1.1.4 can update directly to 1.1.5
+
 ## [1.1.4] - 2026-10-04
 
 Correctness, security, and performance patch after 1.1.3 for Joomla 6 / PHP 8.3+. No changes to storage paths, ACL, or routing defaults. Folder-batch import adds optional `scan_cursor` checkpoint column (empty by default).
@@ -12,7 +26,7 @@ Correctness, security, and performance patch after 1.1.3 for Joomla 6 / PHP 8.3+
 
 - HTTP Range parsing rejects invalid `Range` headers correctly (`HttpByteRange` operator-precedence bug). Unsatisfiable ranges return HTTP 416 explicitly
 - Search indexer loads `storage_driver` and skips external URL documents as skipped instead of repeatedly marking them failed
-- Schema update `1.1.4.sql` / installer ensure adds folder-batch `scan_cursor` and aligns `#__schemas` with the component manifest
+- Folder-batch `scan_cursor` ensured by installer `script.php`; `#__schemas` aligned with the component manifest (non-idempotent `1.1.4.sql` ALTER corrected in 1.1.5)
 
 ### Added
 

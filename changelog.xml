@@ -4,6 +4,20 @@
     <changelog>
         <element>pkg_devartdocuments</element>
         <type>package</type>
+        <version>1.1.5</version>
+        <fix>
+            <item>Installer update from 1.1.3/1.1.4 no longer fails with JInstaller Error SQL / Duplicate column scan_cursor. 1.1.4.sql is a schema marker only; scan_cursor remains ensured idempotently in script.php (safe for re-run and downgrade-friendly additive schema).</item>
+        </fix>
+        <note>
+            <item>Requires Joomla 6.0+ and PHP 8.3.0+.</item>
+            <item>Install and update only through pkg_devartdocuments.</item>
+            <item>Sites that failed on 1.1.4 can update directly to 1.1.5 (column may already exist; that is OK).</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
         <version>1.1.4</version>
         <addition>
             <item>Optional HTTP cache policy for local open/download (off / revalidate / public) with ETag, Last-Modified, and HTTP 304. Default remains private no-store; public applies only to guest-accessible documents.</item>
@@ -11,7 +25,7 @@
         <fix>
             <item>HTTP Range parsing rejects invalid Range headers correctly (operator-precedence bug in HttpByteRange). Unsatisfiable ranges now return HTTP 416 explicitly.</item>
             <item>Search indexer loads storage_driver and skips external URL documents as skipped instead of repeatedly marking them failed.</item>
-            <item>Schema update 1.1.4.sql / installer ensure adds folder-batch scan_cursor and aligns #__schemas with the component manifest.</item>
+            <item>Folder-batch scan_cursor column is ensured by installer script.php; #__schemas aligned with the component manifest. (Non-idempotent ALTER in 1.1.4.sql was corrected in 1.1.5.)</item>
             <item>Google Drive access tokens are cached until near expiry independently of site System Cache, and stored encrypted via TokenVault.</item>
             <item>Software template GitHub release download counts are cached for three hours independently of site System Cache.</item>
             <item>Frontend listing queries no longer select the full description column; listing cards use short_description only.</item>

@@ -30,9 +30,24 @@ The package includes a component, frontend module, content plugin, editor button
 
 ---
 
+## Version 1.1.5
+
+DevArt Documents 1.1.5 is an installer hotfix after 1.1.4 for Joomla 6 / PHP 8.3+. It fixes the `JInstaller Error SQL` / Duplicate column `scan_cursor` failure when updating from 1.1.3 (and when retrying after a failed 1.1.4 attempt). No changes to storage paths, ACL, routing defaults, or document data. Schema remains additive and downgrade-friendly.
+
+### Version 1.1.5 Highlights
+
+- Update/install from 1.1.3 no longer fails with Duplicate column `scan_cursor`
+- `1.1.4.sql` is a schema marker only; `scan_cursor` is ensured idempotently in `script.php`
+- Sites that failed on 1.1.4 can update directly to 1.1.5
+- Includes all 1.1.4 fixes (CSRF, Drive OAuth, folder-batch checkpoint, Cloudflare-safe search, Range/416, caches, streaming harden)
+
+See `CHANGELOG.md` for the full public changelog.
+
+---
+
 ## Version 1.1.4
 
-DevArt Documents 1.1.4 is a correctness, security, and performance patch after 1.1.3 for Joomla 6 / PHP 8.3+. It hardens administrator CSRF, Google Drive OAuth reconnect, folder-batch import checkpoints, Cloudflare-safe frontend search, and streaming/download behaviour. No changes to storage paths, ACL, or routing defaults. Folder-batch import adds an optional `scan_cursor` checkpoint column (empty by default).
+DevArt Documents 1.1.4 is a correctness, security, and performance patch after 1.1.3 for Joomla 6 / PHP 8.3+. It hardens administrator CSRF, Google Drive OAuth reconnect, folder-batch import checkpoints, Cloudflare-safe frontend search, and streaming/download behaviour. No changes to storage paths, ACL, or routing defaults. Folder-batch import adds an optional `scan_cursor` checkpoint column (empty by default). **If you hit Error SQL on update to 1.1.4, install 1.1.5 instead.**
 
 ### Version 1.1.4 Highlights
 
@@ -424,7 +439,7 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.1.4 is a safe update from 1.1.3 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP.
+Version 1.1.5 is a safe update from 1.1.3, from a failed 1.1.4 attempt, and from earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer 1.1.5 over 1.1.4.
 
 If the site uses Cloudflare Cache Everything, add a Cache Rule that bypasses cache when the URI query string contains `filter_search`, and place it after any broad cache rule (see README section Cloudflare Cache Everything).
 
@@ -434,7 +449,7 @@ If the site uses Cloudflare Cache Everything, add a Cache Rule that bypasses cac
 
 Latest release:
 
-`pkg_devartdocuments_v1.1.4.zip`
+`pkg_devartdocuments_v1.1.5.zip`
 
 GitHub releases:
 
@@ -442,11 +457,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.4/pkg_devartdocuments_v1.1.4.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.5/pkg_devartdocuments_v1.1.5.zip
 
 SHA-256:
 
-`cc80bde2e0cc7afa3522088b20a78e0336373c4c3cb596e200256eba668d5ce0`
+`242324f2ac6c4274ba415ae516a4b32aca7c149de7add259e8c92d71b2906d92`
 
 ---
 
