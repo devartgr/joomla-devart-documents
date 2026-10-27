@@ -4,6 +4,20 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.6] - 2026-10-27
+
+Settings save hotfix after 1.1.5. No changes to storage paths, ACL, or routing defaults.
+
+### Fixed
+
+- Tools → Settings no longer reports success while leaving params unchanged: save now uses the Extension table, clears the Joomla `_system` ComponentHelper cache (same as `com_config`), and refuses empty `jform` POSTs
+- Installer refreshes `_system` cache after merging default allowed extensions / Media Manager document types (avoids stale empty params on clean installs with caching enabled)
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+
 ## [1.1.5] - 2026-10-08
 
 Installer hotfix after 1.1.4. No changes to storage paths, ACL, routing defaults, or document data.
