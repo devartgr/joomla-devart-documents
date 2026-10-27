@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.4-orange)
+![Release](https://img.shields.io/badge/Version-1.1.6-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -27,6 +27,20 @@ DevArt Documents supports:
 - Shared DevArt document card rendering
 
 The package includes a component, frontend module, content plugin, editor button, system integration plugin, filesystem plugin, and scheduled task plugin.
+
+---
+
+## Version 1.1.6
+
+DevArt Documents 1.1.6 is a Settings save hotfix after 1.1.5 for Joomla 6 / PHP 8.3+. Tools → Settings now persists reliably on clean installs (and when System Cache is enabled). No changes to storage paths, ACL, or routing defaults.
+
+### Version 1.1.6 Highlights
+
+- Settings save uses the Extension table and clears the Joomla `_system` ComponentHelper cache (same approach as `com_config`)
+- Empty `jform` POSTs are rejected instead of showing a false “saved successfully”
+- Installer clears `_system` cache after merging default allowed extensions / Media Manager document types
+
+See `CHANGELOG.md` for the full public changelog.
 
 ---
 
@@ -439,7 +453,7 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.1.5 is a safe update from 1.1.3, from a failed 1.1.4 attempt, and from earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer 1.1.5 over 1.1.4.
+Version 1.1.6 is a safe update from 1.1.5 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer 1.1.6 over 1.1.4/1.1.5 when Settings must persist on clean installs or with System Cache enabled.
 
 If the site uses Cloudflare Cache Everything, add a Cache Rule that bypasses cache when the URI query string contains `filter_search`, and place it after any broad cache rule (see README section Cloudflare Cache Everything).
 
@@ -449,7 +463,7 @@ If the site uses Cloudflare Cache Everything, add a Cache Rule that bypasses cac
 
 Latest release:
 
-`pkg_devartdocuments_v1.1.5.zip`
+`pkg_devartdocuments_v1.1.6.zip`
 
 GitHub releases:
 
@@ -457,11 +471,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.5/pkg_devartdocuments_v1.1.5.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.6/pkg_devartdocuments_v1.1.6.zip
 
 SHA-256:
 
-`242324f2ac6c4274ba415ae516a4b32aca7c149de7add259e8c92d71b2906d92`
+`b8886ad3542b16b0b5ac9c907736b818312019b4fbae084cf5f89d5a620bdb1f`
 
 ---
 
