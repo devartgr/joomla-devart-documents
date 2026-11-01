@@ -4,6 +4,35 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.7] - 2026-11-01
+
+Security and Cloudflare hardening after 1.1.6, plus small low-risk hygiene. No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Fixed
+
+- Settings save requires `core.manage` (custom `save()` no longer skips authorise)
+- Google Drive params writes clear ComponentHelper `_system` cache (same class as Settings 1.1.6)
+- Private open/download and external URL redirects send `CDN-Cache-Control` / `Cloudflare-CDN-Cache-Control: no-store`
+- Logged-in category/document/tag HTML and flash-bearing category pages mark no-store
+- `search.security` rejects non-POST (405); search clear accepts POST CSRF only
+- HTTP 416 includes `Content-Range: bytes */<size>`
+- Drive visitor errors hide account email/scopes unless debug is enabled
+- Dashboard storage probe appends a unique `devart_probe` query so Cloudflare edge cache cannot fake the origin status
+- Google Drive OAuth nonce files use Joomla `tmp_path` (shared by administrator and site) instead of a hardcoded `JPATH_ROOT/tmp` subpath only
+- Local file serve memoizes `realpath` within the request (fewer duplicate syscalls)
+- PoW difficulty prefix is a single `SearchSettings` constant
+- System plugin `afterCategorySave` no longer mutates `$table->access` after store (dead assignment); folder protect remains
+- Debug document-serve failures set the HTTP status and CDN/no-store headers before printing the message
+- Search rejects terms shorter than 3 characters (except `id:N`); phrase content match no longer falls back to a full chunk LIKE scan when FULLTEXT is enabled, applicable, and returns zero hits (LIKE remains if FULLTEXT is off, below token size, or the FULLTEXT query fails)
+- Failed search submit (e.g. too-short term) clears prior search state instead of re-showing older results next to the warning; the browser also blocks too-short submits with the same message before POST
+- Search script WebAsset version bumped (`1.1.7.short`) so Cloudflare/browser cannot keep serving the pre-fix `site-search-cfpost.js` under the old `1.1.4.cfpost` cache key
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+- Cloudflare Cache Everything still needs ops Bypass rules (`filter_search`, `document.open`/`document.download`, administrator, preferably session Cookie) and purge after public-download ACL/unpublish changes — see README / `qa/checklist.md`
+
 ## [1.1.6] - 2026-10-27
 
 Settings save hotfix after 1.1.5. No changes to storage paths, ACL, or routing defaults.
