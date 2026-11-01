@@ -4,6 +4,32 @@
     <changelog>
         <element>pkg_devartdocuments</element>
         <type>package</type>
+        <version>1.1.7</version>
+        <fix>
+            <item>Settings save now requires core.manage (same as other Settings actions); custom save no longer skips authorise.</item>
+            <item>Google Drive connect/disconnect/token upgrade clears ComponentHelper `_system` cache after writing params (same class as Settings 1.1.6).</item>
+            <item>Private document open/download and external URL redirects send CDN-Cache-Control / Cloudflare-CDN-Cache-Control no-store; logged-in category/document/tag HTML and flash messages also mark no-store.</item>
+            <item>Search security bootstrap rejects non-POST with HTTP 405; search clear accepts POST CSRF only.</item>
+            <item>HTTP 416 responses include Content-Range bytes */size (RFC 9110).</item>
+            <item>Google Drive visitor error pages no longer expose connected account email or OAuth scopes unless debug is enabled.</item>
+            <item>Dashboard storage probe uses a unique devart_probe query parameter so edge HTML/file cache cannot fake the origin HTTP status.</item>
+            <item>Google Drive OAuth nonce storage uses the site tmp_path (shared by administrator and site).</item>
+            <item>Local file serve memoizes realpath within the request; PoW difficulty uses a shared SearchSettings constant; afterCategorySave no longer applies a dead post-store access assignment.</item>
+            <item>Debug document-serve failures set HTTP status and CDN/no-store headers before the debug body.</item>
+            <item>Search rejects terms shorter than 3 characters (except id:N). Phrase content match no longer falls back to a full chunk LIKE scan when FULLTEXT is enabled and applicable and returns zero hits; LIKE remains when FULLTEXT is off, below token size, or the FULLTEXT query fails.</item>
+            <item>Failed search submit (for example a too-short term) clears prior search state instead of re-showing older results beside the warning; the browser also blocks too-short submits before POST.</item>
+            <item>Search script WebAsset version bumped to 1.1.7.short so Cloudflare/browser cannot keep serving the pre-fix site-search-cfpost.js under the old 1.1.4.cfpost cache key.</item>
+        </fix>
+        <note>
+            <item>Requires Joomla 6.0+ and PHP 8.3.0+.</item>
+            <item>Install and update only through pkg_devartdocuments.</item>
+            <item>Cloudflare Cache Everything still needs Bypass rules for filter_search, document.open/download, administrator, and preferably session Cookie — see README and qa/checklist.md. Purge public-cached downloads after ACL/unpublish changes.</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
         <version>1.1.6</version>
         <fix>
             <item>Tools Settings save now persists reliably on clean installs: Extension table store, `_system` ComponentHelper cache clear (same as com_config), and rejection of empty jform POSTs that previously showed Settings saved successfully without writing changes.</item>
