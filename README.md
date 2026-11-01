@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.6-orange)
+![Release](https://img.shields.io/badge/Version-1.1.7-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -27,6 +27,23 @@ DevArt Documents supports:
 - Shared DevArt document card rendering
 
 The package includes a component, frontend module, content plugin, editor button, system integration plugin, filesystem plugin, and scheduled task plugin.
+
+---
+
+## Version 1.1.7
+
+DevArt Documents 1.1.7 is a security and Cloudflare hardening release after 1.1.6 for Joomla 6 / PHP 8.3+. It tightens Settings ACL, CDN no-store headers, search POST bootstrap, short-term search UX, and FULLTEXT phrase matching. No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Version 1.1.7 Highlights
+
+- Settings save requires `core.manage`; Drive params writes clear ComponentHelper `_system` cache
+- Private open/download and logged-in HTML send CDN `no-store`; `search.security` is POST-only
+- Search minimum length 3 characters (except `id:N`); failed too-short submit clears prior search state
+- Phrase FULLTEXT no longer falls back to a full chunk LIKE scan when FULLTEXT returns zero hits
+- Search script WebAsset version `1.1.7.short` so Cloudflare cannot keep an old `site-search-cfpost.js`
+- Storage probe, OAuth `tmp_path`, 416 `Content-Range`, and debug serve status hardenings
+
+See `CHANGELOG.md` for the full public changelog.
 
 ---
 
@@ -349,8 +366,16 @@ If the site uses Cloudflare **Cache Everything** (or similar edge HTML caching) 
 2. **Bypass last** (last matching Cache Rule wins — not legacy Page Rules):
    - `*/administrator*` (and custom admin login URLs)
    - query string contains `filter_search=` (category search result pages)
+   - query string contains `task=document.open` or `task=document.download` (ACL-gated file serve)
+   - recommended: Cookie present (session) so logged-in category/document/tag HTML is not shared with guests
 
-Category search uses a POST security bootstrap and session/URL agreement so captcha results stay visitor-safe; the `filter_search` bypass is still required when Edge TTL ignores `no-store`. Details: `qa/checklist.md` (Cloudflare Cache Rules order).
+Product headers (`Cache-Control` / `CDN-Cache-Control: no-store`) are defense-in-depth; Edge TTL that ignores origin still needs the bypass rules above.
+
+Public download mode (`download_http_cache=public`) may edge-cache guest-accessible files up to the configured max-age / `publish_down`. After unpublish or tightening ACL, **purge** that URL (or purge cache). Edge HITs do not increment the download counter.
+
+Optional: Cloudflare WAF rate-limit on URLs containing `filter_search` if bots hammer search.
+
+Category search uses a POST security bootstrap and session/URL agreement so captcha results stay visitor-safe. Details: `qa/checklist.md` (Cloudflare Cache Rules order).
 
 ---
 
@@ -453,9 +478,9 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.1.6 is a safe update from 1.1.5 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer 1.1.6 over 1.1.4/1.1.5 when Settings must persist on clean installs or with System Cache enabled.
+Version 1.1.7 is a safe update from 1.1.6 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer **1.1.7** for security/Cloudflare hardening and search UX; prefer **1.1.6+** when Settings must persist on clean installs or with System Cache enabled.
 
-If the site uses Cloudflare Cache Everything, add a Cache Rule that bypasses cache when the URI query string contains `filter_search`, and place it after any broad cache rule (see README section Cloudflare Cache Everything).
+If the site uses Cloudflare Cache Everything, add Bypass Cache Rules (after broad cache rules) for `filter_search`, `task=document.open` / `task=document.download`, administrator, and preferably session Cookie — see README section Cloudflare Cache Everything. Purge public-cached downloads after ACL/unpublish changes.
 
 ---
 
@@ -463,7 +488,7 @@ If the site uses Cloudflare Cache Everything, add a Cache Rule that bypasses cac
 
 Latest release:
 
-`pkg_devartdocuments_v1.1.6.zip`
+`pkg_devartdocuments_v1.1.7.zip`
 
 GitHub releases:
 
@@ -471,11 +496,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.6/pkg_devartdocuments_v1.1.6.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.7/pkg_devartdocuments_v1.1.7.zip
 
 SHA-256:
 
-`b8886ad3542b16b0b5ac9c907736b818312019b4fbae084cf5f89d5a620bdb1f`
+`8086d4cff6b0d67c9b878dbaa46b68c8c51dd36d73f2d3e8d33458e487f718e9`
 
 ---
 
