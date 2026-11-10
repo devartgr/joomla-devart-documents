@@ -4,6 +4,19 @@
     <changelog>
         <element>pkg_devartdocuments</element>
         <type>package</type>
+        <version>1.1.8</version>
+        <fix>
+            <item>Saving a document with a duplicate alias in the same category no longer fails with Duplicate entry idx_alias_catid. The table now auto-disambiguates with a URL-safe -1, -2, … suffix (same uniqueness idea as tags / folder scan).</item>
+        </fix>
+        <note>
+            <item>Requires Joomla 6.0+ and PHP 8.3.0+.</item>
+            <item>Install and update only through pkg_devartdocuments.</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
         <version>1.1.7</version>
         <fix>
             <item>Settings save now requires core.manage (same as other Settings actions); custom save no longer skips authorise.</item>
