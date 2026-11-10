@@ -4,6 +4,19 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.8] - 2026-11-10
+
+Document alias uniqueness hotfix after 1.1.7 (GitHub issue #3). No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Fixed
+
+- Saving a document with a duplicate alias in the same category no longer fails with `Duplicate entry … idx_alias_catid`. The table now auto-disambiguates with a URL-safe `-1`, `-2`, … suffix (same uniqueness idea as tags / folder scan)
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+
 ## [1.1.7] - 2026-11-01
 
 Security and Cloudflare hardening after 1.1.6, plus small low-risk hygiene. No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
