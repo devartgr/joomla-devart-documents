@@ -6,12 +6,12 @@
         <element>pkg_devartdocuments</element>
         <type>package</type>
         <client>site</client>
-        <version>1.1.7</version>
+        <version>1.1.8</version>
         <infourl title="DevArt Documents">https://github.com/devartgr/joomla-devart-documents</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.7/pkg_devartdocuments_v1.1.7.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.8/pkg_devartdocuments_v1.1.8.zip</downloadurl>
         </downloads>
-        <sha256>8086d4cff6b0d67c9b878dbaa46b68c8c51dd36d73f2d3e8d33458e487f718e9</sha256>
+        <sha256>a0cc474bcf2240adee252e8b735deae036416cf1702ca5c9b6eeffbd0ed1d913</sha256>
         <tags>
             <tag>stable</tag>
         </tags>
