@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.7-orange)
+![Release](https://img.shields.io/badge/Version-1.1.8-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -27,6 +27,18 @@ DevArt Documents supports:
 - Shared DevArt document card rendering
 
 The package includes a component, frontend module, content plugin, editor button, system integration plugin, filesystem plugin, and scheduled task plugin.
+
+---
+
+## Version 1.1.8
+
+DevArt Documents 1.1.8 is a document alias uniqueness hotfix after 1.1.7 for Joomla 6 / PHP 8.3+ (GitHub issue #3). Saving a document with a duplicate alias in the same category now auto-appends a URL-safe `-1`, `-2`, … suffix instead of failing with `Duplicate entry … idx_alias_catid`. No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Version 1.1.8 Highlights
+
+- Duplicate document alias in the same category is auto-disambiguated on save (`-1`, `-2`, …)
+
+See `CHANGELOG.md` for the full public changelog.
 
 ---
 
@@ -478,7 +490,7 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.1.7 is a safe update from 1.1.6 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer **1.1.7** for security/Cloudflare hardening and search UX; prefer **1.1.6+** when Settings must persist on clean installs or with System Cache enabled.
+Version 1.1.8 is a safe update from 1.1.7 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer **1.1.8** for the duplicate-alias save fix; prefer **1.1.7+** for security/Cloudflare hardening and search UX; prefer **1.1.6+** when Settings must persist on clean installs or with System Cache enabled.
 
 If the site uses Cloudflare Cache Everything, add Bypass Cache Rules (after broad cache rules) for `filter_search`, `task=document.open` / `task=document.download`, administrator, and preferably session Cookie — see README section Cloudflare Cache Everything. Purge public-cached downloads after ACL/unpublish changes.
 
@@ -488,7 +500,7 @@ If the site uses Cloudflare Cache Everything, add Bypass Cache Rules (after broa
 
 Latest release:
 
-`pkg_devartdocuments_v1.1.7.zip`
+`pkg_devartdocuments_v1.1.8.zip`
 
 GitHub releases:
 
@@ -496,11 +508,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.7/pkg_devartdocuments_v1.1.7.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.8/pkg_devartdocuments_v1.1.8.zip
 
 SHA-256:
 
-`8086d4cff6b0d67c9b878dbaa46b68c8c51dd36d73f2d3e8d33458e487f718e9`
+`a0cc474bcf2240adee252e8b735deae036416cf1702ca5c9b6eeffbd0ed1d913`
 
 ---
 
