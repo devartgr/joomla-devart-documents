@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.8-orange)
+![Release](https://img.shields.io/badge/Version-1.1.9-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -27,6 +27,18 @@ DevArt Documents supports:
 - Shared DevArt document card rendering
 
 The package includes a component, frontend module, content plugin, editor button, system integration plugin, filesystem plugin, and scheduled task plugin.
+
+---
+
+## Version 1.1.9
+
+DevArt Documents 1.1.9 is an existing-file selection hotfix after 1.1.8 for Joomla 6 / PHP 8.3+ (GitHub issue #4). Selecting a storage file whose name contains spaces no longer fails with `The selected existing file could not be found`. No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Version 1.1.9 Highlights
+
+- Path sanitisation keeps spaces in existing filenames when linking a file from storage
+
+See `CHANGELOG.md` for the full public changelog.
 
 ---
 
@@ -490,7 +502,7 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.1.8 is a safe update from 1.1.7 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer **1.1.8** for the duplicate-alias save fix; prefer **1.1.7+** for security/Cloudflare hardening and search UX; prefer **1.1.6+** when Settings must persist on clean installs or with System Cache enabled.
+Version 1.1.9 is a safe update from 1.1.8 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer **1.1.9** when selecting existing filenames that contain spaces; prefer **1.1.8+** for the duplicate-alias save fix; prefer **1.1.7+** for security/Cloudflare hardening and search UX; prefer **1.1.6+** when Settings must persist on clean installs or with System Cache enabled.
 
 If the site uses Cloudflare Cache Everything, add Bypass Cache Rules (after broad cache rules) for `filter_search`, `task=document.open` / `task=document.download`, administrator, and preferably session Cookie — see README section Cloudflare Cache Everything. Purge public-cached downloads after ACL/unpublish changes.
 
@@ -500,7 +512,7 @@ If the site uses Cloudflare Cache Everything, add Bypass Cache Rules (after broa
 
 Latest release:
 
-`pkg_devartdocuments_v1.1.8.zip`
+`pkg_devartdocuments_v1.1.9.zip`
 
 GitHub releases:
 
@@ -508,11 +520,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.8/pkg_devartdocuments_v1.1.8.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.9/pkg_devartdocuments_v1.1.9.zip
 
 SHA-256:
 
-`a0cc474bcf2240adee252e8b735deae036416cf1702ca5c9b6eeffbd0ed1d913`
+`7afb4dbc5c9e1d7d73f8b2928d50674ea6f429360c8de44c27797112a3cff57f`
 
 ---
 
