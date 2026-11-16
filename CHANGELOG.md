@@ -4,6 +4,19 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.9] - 2026-11-16
+
+Existing-file selection hotfix after 1.1.8 (GitHub issue #4). No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Fixed
+
+- Selecting an existing storage file whose name contains spaces no longer fails with `The selected existing file could not be found`. Path sanitisation now keeps spaces (aligned with the document file browser) instead of rewriting them to `-`
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+
 ## [1.1.8] - 2026-11-10
 
 Document alias uniqueness hotfix after 1.1.7 (GitHub issue #3). No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
