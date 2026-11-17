@@ -4,6 +4,20 @@
     <changelog>
         <element>pkg_devartdocuments</element>
         <type>package</type>
+        <version>1.1.10</version>
+        <fix>
+            <item>After installing 1.1.8 / 1.1.9, System Maintenance Database no longer reports a false Database version does not match for DevArt Documents. Postflight now aligns #__schemas with the highest sql/updates marker, and markers are added for 1.1.8, 1.1.9, and 1.1.10 (no structural DDL).</item>
+        </fix>
+        <note>
+            <item>Requires Joomla 6.0+ and PHP 8.3.0+.</item>
+            <item>Install and update only through pkg_devartdocuments.</item>
+            <item>Sites that already clicked Update Structure are fine; updating to 1.1.10 clears the warning without that step.</item>
+        </note>
+    </changelog>
+
+    <changelog>
+        <element>pkg_devartdocuments</element>
+        <type>package</type>
         <version>1.1.9</version>
         <fix>
             <item>Selecting an existing storage file whose name contains spaces no longer fails with The selected existing file could not be found. Path sanitisation now keeps spaces (aligned with the document file browser) instead of rewriting them to -.</item>
