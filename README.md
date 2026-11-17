@@ -4,7 +4,7 @@ Professional document management package for Joomla 6, designed for municipaliti
 
 ![Joomla](https://img.shields.io/badge/Joomla-6.x-blue)
 ![PHP](https://img.shields.io/badge/PHP-8.3%2B-green)
-![Release](https://img.shields.io/badge/Version-1.1.9-orange)
+![Release](https://img.shields.io/badge/Version-1.1.10-orange)
 ![License](https://img.shields.io/badge/License-GPLv3-red)
 
 ---
@@ -27,6 +27,19 @@ DevArt Documents supports:
 - Shared DevArt document card rendering
 
 The package includes a component, frontend module, content plugin, editor button, system integration plugin, filesystem plugin, and scheduled task plugin.
+
+---
+
+## Version 1.1.10
+
+DevArt Documents 1.1.10 is an installer schema alignment hotfix after 1.1.9 for Joomla 6 / PHP 8.3+. It clears the false System → Maintenance → Database warning (`Database version does not match`) that appeared after 1.1.8 / 1.1.9 when SQL schema markers lagged the manifest. No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Version 1.1.10 Highlights
+
+- `#__schemas` is aligned with the highest `sql/updates` marker (not the manifest alone)
+- Schema markers added for 1.1.8, 1.1.9, and 1.1.10 (no structural DDL)
+
+See `CHANGELOG.md` for the full public changelog.
 
 ---
 
@@ -502,7 +515,7 @@ Before updating a production website:
 - Run **System → Maintenance → Database** and confirm no problems
 - Clear frontend and CDN caches when necessary
 
-Version 1.1.9 is a safe update from 1.1.8 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer **1.1.9** when selecting existing filenames that contain spaces; prefer **1.1.8+** for the duplicate-alias save fix; prefer **1.1.7+** for security/Cloudflare hardening and search UX; prefer **1.1.6+** when Settings must persist on clean installs or with System Cache enabled.
+Version 1.1.10 is a safe update from 1.1.9 and earlier 1.1.x / 1.0.1 releases. Always install or update with the full `pkg_devartdocuments` package ZIP. Prefer **1.1.10** to clear the Maintenance → Database schema warning after 1.1.8 / 1.1.9; prefer **1.1.9+** when selecting existing filenames that contain spaces; prefer **1.1.8+** for the duplicate-alias save fix; prefer **1.1.7+** for security/Cloudflare hardening and search UX; prefer **1.1.6+** when Settings must persist on clean installs or with System Cache enabled.
 
 If the site uses Cloudflare Cache Everything, add Bypass Cache Rules (after broad cache rules) for `filter_search`, `task=document.open` / `task=document.download`, administrator, and preferably session Cookie — see README section Cloudflare Cache Everything. Purge public-cached downloads after ACL/unpublish changes.
 
@@ -512,7 +525,7 @@ If the site uses Cloudflare Cache Everything, add Bypass Cache Rules (after broa
 
 Latest release:
 
-`pkg_devartdocuments_v1.1.9.zip`
+`pkg_devartdocuments_v1.1.10.zip`
 
 GitHub releases:
 
@@ -520,11 +533,11 @@ https://github.com/devartgr/joomla-devart-documents/releases
 
 Direct download:
 
-https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.9/pkg_devartdocuments_v1.1.9.zip
+https://github.com/devartgr/joomla-devart-documents/releases/download/v1.1.10/pkg_devartdocuments_v1.1.10.zip
 
 SHA-256:
 
-`7afb4dbc5c9e1d7d73f8b2928d50674ea6f429360c8de44c27797112a3cff57f`
+`614ac39868c1dcede0b0405865e53baecf22d24b95609a4ea9970c15e3ce5111`
 
 ---
 
