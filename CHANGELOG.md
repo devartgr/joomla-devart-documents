@@ -4,6 +4,20 @@ All notable changes to DevArt Documents are documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [1.1.10] - 2026-11-17
+
+Installer schema alignment hotfix after 1.1.9. No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
+
+### Fixed
+
+- After installing 1.1.8 / 1.1.9, System → Maintenance → Database no longer reports a false `Database version does not match` for DevArt Documents. Cause: postflight wrote `#__schemas` from the manifest while the highest `sql/updates` marker was still `1.1.7`. Installer now sets `#__schemas` from the highest SQL marker and adds markers for `1.1.8`, `1.1.9`, and `1.1.10` (no structural DDL)
+
+### Notes
+
+- Requires Joomla 6.0+ and PHP 8.3.0+
+- Install and update only through `pkg_devartdocuments`
+- Sites that already clicked Update Structure are fine; updating to 1.1.10 clears the warning without that step
+
 ## [1.1.9] - 2026-11-16
 
 Existing-file selection hotfix after 1.1.8 (GitHub issue #4). No changes to storage paths, ACL semantics, routing defaults, or guest public-download cache policy.
